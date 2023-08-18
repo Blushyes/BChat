@@ -1,0 +1,422 @@
+{
+    "bvid": "BV1qV41137sb",
+    "aid": 404671999,
+    "videos": 22,
+    "tid": 231,
+    "tname": "\u8ba1\u7b97\u673a\u6280\u672f",
+    "copyright": 2,
+    "pic": "http://i0.hdslb.com/bfs/archive/bf5811ab99f8fa3345909ea04937ae4a71a1d708.png",
+    "title": "\u3010\u9ebb\u7701\u7406\u5de5-\u7b97\u6cd5\u5bfc\u8bba\u3011\u5439\u7206\uff01\u7b97\u6cd5\u5bfc\u8bba\u539f\u4f5c\u5927\u4f6c\u624b\u628a\u624b\u6559\u4f1a\u4f60\uff08\u53cc\u8bed\u5b57\u5e55\uff0c\u9644\u8bfe\u540e\u4e60\u9898\u53ca\u8bfe\u4ef6\uff09\uff0c\u662f\u5b66\u4e60\u7b97\u6cd5\u4e0d\u80fd\u9519\u8fc7\u7684\u7ecf\u5178\u4e4b\u4f5c\uff01\uff01-\u4eba\u5de5\u667a\u80fd/\u9ad8\u7b49\u6570\u5b66/\u7b97\u6cd5/AI\u3002",
+    "pubdate": 1692003010,
+    "ctime": 1692003010,
+    "desc": "~",
+    "desc_v2": [
+        {
+            "raw_text": "~",
+            "type": 1,
+            "biz_id": 0
+        }
+    ],
+    "state": 0,
+    "duration": 103459,
+    "rights": {
+        "bp": 0,
+        "elec": 0,
+        "download": 1,
+        "movie": 0,
+        "pay": 0,
+        "hd5": 0,
+        "no_reprint": 0,
+        "autoplay": 1,
+        "ugc_pay": 0,
+        "is_cooperation": 0,
+        "ugc_pay_preview": 0,
+        "no_background": 0,
+        "clean_mode": 0,
+        "is_stein_gate": 0,
+        "is_360": 0,
+        "no_share": 0,
+        "arc_pay": 0,
+        "free_watch": 0
+    },
+    "owner": {
+        "mid": 3493094261524655,
+        "name": "\u5c0f\u5df4\u53ea\u7231\u5b66\u4e60",
+        "face": "https://i2.hdslb.com/bfs/face/41852a2ade6ff63bce497442dfc4897b8219380a.jpg"
+    },
+    "stat": {
+        "aid": 404671999,
+        "view": 11552,
+        "danmaku": 69,
+        "reply": 30,
+        "favorite": 2807,
+        "coin": 210,
+        "share": 72,
+        "now_rank": 0,
+        "his_rank": 0,
+        "like": 693,
+        "dislike": 0,
+        "evaluation": "",
+        "argue_msg": "",
+        "vt": 0
+    },
+    "dynamic": "",
+    "cid": 1233777059,
+    "dimension": {
+        "width": 1280,
+        "height": 720,
+        "rotate": 0
+    },
+    "premiere": null,
+    "teenage_mode": 0,
+    "is_chargeable_season": false,
+    "is_story": false,
+    "is_upower_exclusive": false,
+    "is_upower_play": false,
+    "enable_vt": 0,
+    "no_cache": false,
+    "pages": [
+        {
+            "cid": 1233777059,
+            "page": 1,
+            "from": "vupload",
+            "part": "01.\u8bfe\u7a0b\u7b80\u4ecb\u53ca\u7b97\u6cd5\u5206\u6790",
+            "duration": 4834,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 1280,
+                "height": 720,
+                "rotate": 0
+            },
+            "first_frame": "http://i2.hdslb.com/bfs/storyff/n230814062e8nu95dkp9kwc1lnsde76j_firsti.jpg"
+        },
+        {
+            "cid": 1233767019,
+            "page": 2,
+            "from": "vupload",
+            "part": "02.\u6e10\u8fd1\u7b26\u53f7\u3001\u9012\u5f52\u53ca\u89e3\u6cd5",
+            "duration": 4232,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814011puty7vra1f1277emjroyma_firsti.jpg"
+        },
+        {
+            "cid": 1233766927,
+            "page": 3,
+            "from": "vupload",
+            "part": "03.\u5206\u6cbb\u6cd5\uff081\uff09",
+            "duration": 4114,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i0.hdslb.com/bfs/storyff/n2308140320tpum40ttghs3irdkautwt_firsti.jpg"
+        },
+        {
+            "cid": 1233767155,
+            "page": 4,
+            "from": "vupload",
+            "part": "04.\u5feb\u6392\u53ca\u968f\u673a\u5316\u7b97\u6cd5",
+            "duration": 4834,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814042dcjblav36rsm2v9bc9lpy6_firsti.jpg"
+        },
+        {
+            "cid": 1233766188,
+            "page": 5,
+            "from": "vupload",
+            "part": "05.\u7ebf\u6027\u65f6\u95f4\u6392\u5e8f",
+            "duration": 4611,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i2.hdslb.com/bfs/storyff/n2308140627ueqf7o5hk1u1344wve3xa_firsti.jpg"
+        },
+        {
+            "cid": 1233767788,
+            "page": 6,
+            "from": "vupload",
+            "part": "06.\u987a\u5e8f\u7edf\u8ba1\u3001\u4e2d\u503c",
+            "duration": 4129,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i0.hdslb.com/bfs/storyff/n23081403lcvm4sukd2cu11t6ir322ri_firsti.jpg"
+        },
+        {
+            "cid": 1233768638,
+            "page": 7,
+            "from": "vupload",
+            "part": "07.\u54c8\u5e0c\u8868",
+            "duration": 4665,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n23081405106t57p6c4d6n3a1y9ws8n5_firsti.jpg"
+        },
+        {
+            "cid": 1233768476,
+            "page": 8,
+            "from": "vupload",
+            "part": "08.\u5168\u57df\u54c8\u5e0c\u548c\u5b8c\u5168\u54c8\u5e0c",
+            "duration": 4792,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814012ss9c8nal1n9ds3j1uyiccw_firsti.jpg"
+        },
+        {
+            "cid": 1233768017,
+            "page": 9,
+            "from": "vupload",
+            "part": "09.\u4e8c\u53c9\u641c\u7d22\u6811",
+            "duration": 4570,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i0.hdslb.com/bfs/storyff/n230814061y48rc1yhe78uisp3bhz5v8_firsti.jpg"
+        },
+        {
+            "cid": 1233768739,
+            "page": 10,
+            "from": "vupload",
+            "part": "10.\u5e73\u8861\u641c\u7d22\u6811",
+            "duration": 5037,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i2.hdslb.com/bfs/storyff/n23081402206r19j9o4zc13heh6y5hzg_firsti.jpg"
+        },
+        {
+            "cid": 1233769140,
+            "page": 11,
+            "from": "vupload",
+            "part": "11.\u6269\u5145\u7684\u6570\u636e\u7ed3\u6784\u3001\u52a8\u6001\u6709\u5e8f\u7edf\u8ba1\u548c\u533a\u95f4\u6811",
+            "duration": 5031,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n23081403ss0fpro9cb7unbohpagt1ry_firsti.jpg"
+        },
+        {
+            "cid": 1233768499,
+            "page": 12,
+            "from": "vupload",
+            "part": "12.\u8df3\u8dc3\u8868",
+            "duration": 5137,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814041qdf3qd8u98z52kn9o1z1h3_firsti.jpg"
+        },
+        {
+            "cid": 1233770031,
+            "page": 13,
+            "from": "vupload",
+            "part": "13.\u5e73\u644a\u5206\u6790\uff0c\u8868\u7684\u6269\u589e\uff0c\u52bf\u80fd\u65b9\u6cd5",
+            "duration": 4752,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i0.hdslb.com/bfs/storyff/n230814056j2nxqz3nhr23hfpzlk3mx7_firsti.jpg"
+        },
+        {
+            "cid": 1233770018,
+            "page": 14,
+            "from": "vupload",
+            "part": "14.\u7ade\u4e89\u6027\u5206\u6790\uff0c\u81ea\u7ec4\u7ec7\u8868",
+            "duration": 4473,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i0.hdslb.com/bfs/storyff/n23081406345ty3iuh0buqmd0h0g0v7l_firsti.jpg"
+        },
+        {
+            "cid": 1233769822,
+            "page": 15,
+            "from": "vupload",
+            "part": "15.\u52a8\u6001\u89c4\u5212\uff0c\u6700\u957f\u516c\u5171\u5b50\u5e8f\u5217",
+            "duration": 4266,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i0.hdslb.com/bfs/storyff/n230814052sovm9g48hxzs356dhkpzii_firsti.jpg"
+        },
+        {
+            "cid": 1233769644,
+            "page": 16,
+            "from": "vupload",
+            "part": "16.\u8d2a\u5a6a\u7b97\u6cd5\uff0c\u6700\u5c0f\u751f\u6210\u6811",
+            "duration": 5053,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i2.hdslb.com/bfs/storyff/n230814021ya8qpzp58ra73k3j5ygw0s_firsti.jpg"
+        },
+        {
+            "cid": 1233769980,
+            "page": 17,
+            "from": "vupload",
+            "part": "17.\u6700\u77ed\u8def\u5f84\u7b97\u6cd5\uff1aDijkstra\u7b97\u6cd5\uff0c\u5e7f\u5ea6\u4f18\u5148\u641c\u7d22",
+            "duration": 5079,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i2.hdslb.com/bfs/storyff/n230814021mue5xj8fwn7r1se9y1kobu_firsti.jpg"
+        },
+        {
+            "cid": 1233770438,
+            "page": 18,
+            "from": "vupload",
+            "part": "19.\u6700\u77ed\u8def\u5f84\u7b97\u6cd5\uff1a\u70b9\u7684\u6700\u77ed\u8def\u5f84",
+            "duration": 4504,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814061lraqwxl6tos61avrn04y99_firsti.jpg"
+        },
+        {
+            "cid": 1233770572,
+            "page": 19,
+            "from": "vupload",
+            "part": "20.\u9ad8\u7ea7\u8bfe\u9898\u5e76\u884c\u7b97\u6cd5\uff08\u4e00\uff09",
+            "duration": 4513,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814013nu88x4knep1v2xp2aas25u_firsti.jpg"
+        },
+        {
+            "cid": 1233770749,
+            "page": 20,
+            "from": "vupload",
+            "part": "21.\u9ad8\u7ea7\u8bfe\u9898\u5e76\u884c\u7b97\u6cd5\uff08\u4e8c\uff09",
+            "duration": 4613,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814012mvt3peeiw9js3jss0wipha_firsti.jpg"
+        },
+        {
+            "cid": 1233770810,
+            "page": 21,
+            "from": "vupload",
+            "part": "22.\u9ad8\u7ea7\u8bfe\u9898\u7f13\u5b58\u53c2\u6570\u65e0\u5173\u7b97\u6cd5",
+            "duration": 5093,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n230814041zy3sy63u0hw314bt89jezo_firsti.jpg"
+        },
+        {
+            "cid": 1233771320,
+            "page": 22,
+            "from": "vupload",
+            "part": "23.\u7f13\u5b58\u65e0\u5173\u7b97\u6cd52",
+            "duration": 5127,
+            "vid": "",
+            "weblink": "",
+            "dimension": {
+                "width": 640,
+                "height": 480,
+                "rotate": 0
+            },
+            "first_frame": "http://i1.hdslb.com/bfs/storyff/n23081406y3l5n7cpu3na14b8uykgvok_firsti.jpg"
+        }
+    ],
+    "subtitle": {
+        "allow_submit": false,
+        "list": []
+    },
+    "is_season_display": false,
+    "user_garb": {
+        "url_image_ani_cut": ""
+    },
+    "honor_reply": {},
+    "like_icon": "",
+    "need_jump_bv": false,
+    "disable_show_up_info": false
+}

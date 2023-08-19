@@ -5,6 +5,15 @@ import logging
 
 
 class Comment(object):
+    """
+    评论封装类
+
+    bv：视频的BV号
+    id：评论的id
+    uid：用户的id
+    uname：用户名
+    message：评论的内容
+    """
     def __init__(self, bv, id, uid, uname, message):
         self.bv = bv
         self.id = id
@@ -19,7 +28,6 @@ class Comment(object):
 async def get_comments(bv):
     """
     获取某个视频下的评论，封装为一个Comment对象
-
     """
     # 存储评论
     comments = []
@@ -68,10 +76,13 @@ async def send_comment(credential, content, oid, replied):
     oid: BV号
     replied: 父评论的id
     """
-
+    # 获取大模型的回答内容
+    # TODO 考虑抽象回答模块
     content = str(content[-1]['content'])
     content = content.replace('\\n', '\r\n')
     logging.info(content)
+
+    # 分段，单条评论不能超过999字
     contents = tuple(content[i:i + 999] for i in range(0, len(content), 999))
     for answer in contents:
         await comment.send_comment(oid=oid, text=answer, type_=comment.CommentResourceType.VIDEO,

@@ -1,6 +1,7 @@
 import asyncio
 import logging
 
+from config import config
 from login import login
 from reply_myself import ReplyMyself
 

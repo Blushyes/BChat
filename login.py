@@ -4,7 +4,7 @@ import time
 from PIL import Image
 from bilibili_api import login_func
 
-from config import config
+from config import config, RuntimePlatform
 
 
 def login():
@@ -17,17 +17,22 @@ def login():
 
     while True:
         state, session = login_func.check_qrcode_events(credential)
+
+        # 检测登录状态，若已经登录则进行下一步动作
         print('state', state)
         if state == login_func.QrCodeLoginEvents.DONE:
+            # 存session
             config.session_dict[credential] = session
             break
 
-        # windows打开
-        img = Image.open(picture.url.replace('file://', ''))
-        img.show()
+        # 如果操作系统为Windows则直接打开图片扫码
+        if RuntimePlatform.WINDOWS == config.runtime_platform:
+            img = Image.open(picture.url.replace('file://', ''))
+            img.show()
 
         time.sleep(3)
 
+    # 设置全局凭证
     config.credential = credential
     return credential
 
@@ -38,6 +43,7 @@ def get_session(credential):
 
     credential: 凭证str
     """
+    # 如果凭证为空则需要登录
     if not credential or credential == '':
         credential = login()
 

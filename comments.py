@@ -1,6 +1,7 @@
 from bilibili_api import comment
+
 import login
-import json
+import logging
 
 
 class Comment(object):
@@ -16,10 +17,10 @@ class Comment(object):
 
 
 async def get_comments(bv):
-    '''
+    """
     获取某个视频下的评论，封装为一个Comment对象
 
-    '''
+    """
     # 存储评论
     comments = []
     # 页码
@@ -30,7 +31,7 @@ async def get_comments(bv):
         # 获取评论
         c = await comment.get_comments(bv, comment.CommentResourceType.VIDEO, page)
         # 存储评论
-        if (c['replies']):
+        if c['replies']:
             comments.extend(c['replies'])
 
         # 增加已获取数量
@@ -43,13 +44,14 @@ async def get_comments(bv):
             break
 
     # 打印评论
-    for cmt in comments:
-        print(f"{cmt['member']['uname']}: {cmt['content']['message']}")
+    # for cmt in comments:
+    #     logging.info(f"{cmt['member']['uname']}: {cmt['content']['message']}")
 
     # 打印评论总数
-    print(f"\n\n共有 {count} 条评论（不含子评论）")
+    # logging.info(f"\n\n共有 {count} 条评论（不含子评论）")
 
-    return [Comment(bv, cmt['rpid'], cmt['member']['mid'], cmt['member']['uname'], cmt['content']['message']) for cmt in comments]
+    return [Comment(bv, cmt['rpid'], cmt['member']['mid'], cmt['member']['uname'], cmt['content']['message']) for cmt in
+            comments]
 
 
 async def get_comments_list(bv_list) -> list[Comment]:
@@ -59,18 +61,18 @@ async def get_comments_list(bv_list) -> list[Comment]:
     return comment_list
 
 
-async def send_comment(credential, content, oid, replid):
-    '''
+async def send_comment(credential, content, oid, replied):
+    """
     发送评论
 
     oid: BV号
-    replid: 父评论的id
-    '''
+    replied: 父评论的id
+    """
 
     content = str(content[-1]['content'])
     content = content.replace('\\n', '\r\n')
-    contents = tuple(content[i:i+999] for i in range(0, len(content), 999))
-    print(content)
+    logging.info(content)
+    contents = tuple(content[i:i + 999] for i in range(0, len(content), 999))
     for answer in contents:
         await comment.send_comment(oid=oid, text=answer, type_=comment.CommentResourceType.VIDEO,
-                                   credential=login.get_session(credential), root=replid)
+                                   credential=login.get_session(credential), root=replied)

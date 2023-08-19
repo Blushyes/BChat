@@ -4,14 +4,15 @@ import datetime
 import hashlib
 import hmac
 import json
-from urllib.parse import urlparse
 import ssl
 from datetime import datetime
 from time import mktime
 from urllib.parse import urlencode
+from urllib.parse import urlparse
 from wsgiref.handlers import format_date_time
 
 import websocket  # 使用websocket_client
+
 answer = ""
 
 
@@ -68,6 +69,7 @@ def on_error(ws, error):
 # 收到websocket关闭的处理
 def on_close(ws, one, two):
     print("closed.")
+
 
 # 收到websocket连接建立的处理
 

@@ -1,15 +1,16 @@
-from login import login, get_session
 from bilibili_api import user
-from config import config
+
 import persistent
+from config import config
+from login import login, get_session
 
 
 class Video:
     async def get_all_videos(self, uid=1472871866, persistent_response=False):
-        '''
+        """
         获取某个用户所有的视频的BV号
-        '''
-        if (not config.credential):
+        """
+        if not config.credential:
             config.credential = login()
         myself = user.User(uid, get_session(
             config.credential))
@@ -24,7 +25,7 @@ class Video:
         print(videos)
 
         # 持久化 response
-        if (persistent_response):
+        if persistent_response:
             try:
                 persistent.save_json(f'videos-{uid}.json', response)
             except Exception:

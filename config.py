@@ -16,7 +16,7 @@ class Config:
         self.credential = credential
 
     def __str__(self) -> str:
-        return f'creadential: {self.credential}'
+        return f'credential: {self.credential}'
 
 
 # 唯一的单例config

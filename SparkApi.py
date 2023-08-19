@@ -68,7 +68,7 @@ def on_error(ws, error):
 
 # 收到websocket关闭的处理
 def on_close(ws, one, two):
-    print("closed.")
+    print("\nxunfei websocket closed.")
 
 
 # 收到websocket连接建立的处理

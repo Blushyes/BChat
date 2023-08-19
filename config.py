@@ -21,7 +21,7 @@ class Config:
     # 默认为开发环境
     profile = Profile.DEV
 
-    def __int__(self):
+    def __init__(self):
         if platform.system() == 'Windows':
             self.runtime_platform = RuntimePlatform.WINDOWS
 
@@ -39,7 +39,6 @@ class Config:
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
             cls._instance = super().__new__(cls, *args, **kwargs)
-            cls._instance.__int__()
         return cls._instance
 
     def set_credential(self, credential):

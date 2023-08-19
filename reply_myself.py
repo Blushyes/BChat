@@ -1,21 +1,25 @@
 import asyncio
-import logging
 import os
 import random
 
 import xunfei
 from comments import *
 from config import config, Profile
-from video import Video
+from video import get_all_videos
 
 MARKED_FILENAME = 'markedfile'
 SPLIT = '-'
 SLEEP_TIME = 10
 
 
-class ReplyMyself(object):
-    def __init__(self) -> None:
-        self._video = Video()
+class ReplyMyself:
+    """
+    回复自己视频的评论
+    """
+    _UID = None
+
+    def __init__(self, uid):
+        self._UID = uid
 
     def start_loop(self):
         """
@@ -25,7 +29,7 @@ class ReplyMyself(object):
 
     async def _reply_loop(self):
         while True:
-            my_video_list = await self._video.get_all_videos()
+            my_video_list = await get_all_videos(uid=self._UID)
 
             comment_list = await get_comments_list(my_video_list)
             marked = set()
@@ -36,17 +40,10 @@ class ReplyMyself(object):
                 if (cmt.bv, cmt.id) in marked:
                     logging.debug(f'评论 [{cmt.id}] 已回复')
                     continue
-
-                # int(cmt.uid) == 1472871866
-                if config.profile == Profile.PROD:
+                if config.profile == Profile.PROD: # 生产环境下，通过 Q 开头
                     if cmt.message.startswith('Q:') or cmt.message.startswith('Q：'):
-                        # logging.info(f'问题：{cmt.message}')
-                        # logging.info('正在准备回复中......')
-                        # # TODO 考虑用数据库mark
-                        # mark(cmt)
-                        # await send_comment(config.credential, xunfei.ask(cmt.message), cmt.bv, cmt.id)
                         await reply(cmt)
-                elif config.profile == Profile.DEV:
+                elif config.profile == Profile.DEV: # 开发环境下，通过 T 开头
                     if cmt.message.startswith('T:') or cmt.message.startswith('T：'):
                         await reply(cmt)
 

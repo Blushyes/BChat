@@ -9,14 +9,14 @@ class Comment(object):
     评论封装类
 
     bv：视频的BV号
-    id：评论的id
+    cid：评论的id
     uid：用户的id
     uname：用户名
     message：评论的内容
     """
-    def __init__(self, bv, id, uid, uname, message):
+    def __init__(self, bv, cid, uid, uname, message):
         self.bv = bv
-        self.id = id
+        self.id = cid
         self.uid = uid
         self.uname = uname
         self.message = message

@@ -7,6 +7,7 @@ class RuntimePlatform:
     LINUX = 'linux'
     UNKNOWN = 'unknown'
 
+
 class Profile:
     PROD = 'prod'
     DEV = 'dev'
@@ -50,3 +51,10 @@ class Config:
 
 # 唯一的单例config
 config = Config()
+
+# 配置日志输出格式和级别
+log_level = logging.DEBUG if config.profile == Profile.DEV else logging.INFO
+logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s',
+                    level=logging.WARNING)
+log = logging.getLogger('blushyes')
+log.setLevel(log_level)

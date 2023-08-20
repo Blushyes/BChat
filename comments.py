@@ -1,7 +1,7 @@
 from bilibili_api import comment
 
 import login
-import logging
+from config import log
 
 
 class Comment(object):
@@ -14,6 +14,7 @@ class Comment(object):
     uname：用户名
     message：评论的内容
     """
+
     def __init__(self, bv, cid, uid, uname, message):
         self.bv = bv
         self.id = cid
@@ -78,12 +79,16 @@ async def send_comment(credential, content, oid, replied):
     """
     # 获取大模型的回答内容
     # TODO 考虑抽象回答模块
-    content = str(content[-1]['content'])
     content = content.replace('\\n', '\r\n')
-    logging.info(content)
+    log.info(content)
 
     # 分段，单条评论不能超过999字
     contents = tuple(content[i:i + 999] for i in range(0, len(content), 999))
     for answer in contents:
-        await comment.send_comment(oid=oid, text=answer, type_=comment.CommentResourceType.VIDEO,
-                                   credential=login.get_session(credential), root=replied)
+        # 出现过在大模型回复的过程中用户把评论给删了导致的接口返回报错而中断程序
+        # 这里对该情况进行处理
+        try:
+            await comment.send_comment(oid=oid, text=answer, type_=comment.CommentResourceType.VIDEO,
+                                       credential=login.get_session(credential), root=replied)
+        except Exception as e:
+            log.error(e)

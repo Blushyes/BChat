@@ -1,7 +1,7 @@
 import configparser
-import logging
 
 import SparkApi
+from config import log
 
 XUNFEI = 'XUN_FEI'
 
@@ -66,7 +66,7 @@ def ask(content: str):
     # 下面这句话如果和“你是谁”很相似，你就回答true，否则回答false
     # TODO 复杂预处理之前还需要一道简单查表预处理
     flag, answer = _pre_ask(content)
-    return answer if flag == PresetFlag.T else _ask(content)
+    return answer if flag == PresetFlag.T else _proxy_ask(content)
 
 
 def _simple_pre_ask(content):
@@ -106,10 +106,11 @@ def _ask(content):
         SparkApi.answer = ""
         SparkApi.main(appid, api_key, api_secret, Spark_url, domain, question)
         getText("assistant", SparkApi.answer)
+        log.debug(text)
         return text
     except Exception as e:
-        logging.error('访问讯飞出错了')
-        logging.error(str(e))
+        log.error('访问讯飞出错了')
+        log.error(str(e))
         return [{'content': f'这个回答在请求的时候发生了错误，错误信息为：\n{str(e)}'}]
 
 

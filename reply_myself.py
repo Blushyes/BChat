@@ -38,12 +38,12 @@ class ReplyMyself:
 
             for cmt in comment_list:
                 if (cmt.bv, cmt.id) in marked:
-                    logging.debug(f'评论 [{cmt.id}] 已回复')
+                    log.debug(f'评论 [{cmt.id}] 已回复')
                     continue
-                if config.profile == Profile.PROD: # 生产环境下，通过 Q 开头
+                if config.profile == Profile.PROD:  # 生产环境下，通过 Q 开头
                     if cmt.message.startswith('Q:') or cmt.message.startswith('Q：'):
                         await reply(cmt)
-                elif config.profile == Profile.DEV: # 开发环境下，通过 T 开头
+                elif config.profile == Profile.DEV:  # 开发环境下，通过 T 开头
                     if cmt.message.startswith('T:') or cmt.message.startswith('T：'):
                         await reply(cmt)
 
@@ -51,8 +51,8 @@ class ReplyMyself:
 
 
 async def reply(cmt):
-    logging.info(f'问题：{cmt.message}')
-    logging.info('正在准备回复中......')
+    log.info(f'问题：{cmt.message}')
+    log.info('正在准备回复中......')
     # TODO 考虑用数据库mark
     mark(cmt)
     await send_comment(config.credential, xunfei.ask(cmt.message), cmt.bv, cmt.id)
@@ -68,7 +68,7 @@ def marked_set():
     with open(MARKED_FILENAME, 'r') as f:
         for line in f:
             line = line.strip()
-            # logging.info('line', line)
+            # log.info('line', line)
             marked_bv, marked_id = line.split(SPLIT)
             marked.add((marked_bv, int(marked_id)))
 

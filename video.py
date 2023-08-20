@@ -1,9 +1,7 @@
-import logging
-
 from bilibili_api import user
 
 import persistent
-from config import config
+from config import config, log
 from login import login, get_session
 
 
@@ -23,13 +21,13 @@ async def get_all_videos(uid=1472871866, persistent_response=False):
     videos = []
     for video in response['list']['vlist']:
         videos.append(video['bvid'])
-    logging.info(videos)
+    log.info(videos)
 
     # 持久化 response
     if persistent_response:
         try:
             persistent.save_json(f'videos-{uid}.json', response)
         except Exception:
-            logging.error('保存video时发生了异常')
+            log.error('保存video时发生了异常')
 
     return videos

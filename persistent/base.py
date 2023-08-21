@@ -1,6 +1,7 @@
 import json
 
 from config import config
+from . import sync_marked
 
 # 获取标记策略
 mark_strategy = config.get_persistent_config('strategy')
@@ -28,4 +29,5 @@ def get_mark_strategy(mark_strategy_type: str):
 
 
 mark, marked_set = get_mark_strategy(mark_strategy)
+sync_marked.sync()
 # print(marked_set())

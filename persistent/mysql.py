@@ -30,7 +30,10 @@ def mark(comment_list: list[Comment]):
             sql = f"INSERT INTO marked (bid, cid) VALUES {values};"
             cursor.execute(sql)
 
-        connection.commit()
+        try:
+            connection.commit()
+        except Exception:
+            connection.rollback()
 
 
 def marked_set():

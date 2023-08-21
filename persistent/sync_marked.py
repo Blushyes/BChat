@@ -1,15 +1,25 @@
+import persistent.delegate as delegate
 import persistent.mysql as mysql
 import persistent.simple as simple
 from config import log
 from core.comments import Comment
 
-# TODO 后续扩展多种策略得修改同步策略
+
 def sync():
     log.debug('开始同步标记数据')
-    simple_marked = simple.marked_set()
-    log.debug(f'simple: {simple_marked}')
-    mysql_marked = mysql.marked_set()
-    log.debug(f'mysql: {mysql_marked}')
-    mysql.mark([Comment(bid, cid) for bid, cid in simple_marked if (bid, cid) not in mysql_marked])
-    simple.mark([Comment(bid, cid) for bid, cid in mysql_marked if (bid, cid) not in simple_marked])
+    sync_list = [
+        [simple.marked_set, simple.mark],
+        [mysql.marked_set, mysql.mark],
+        [delegate.marked_set, delegate.mark]
+    ]
+    for i in range(len(sync_list)):
+        for j in range(len(sync_list)):
+            if i == j: continue
+            syncer = sync_list[i]
+            reference = sync_list[j]
+            syncer_marked_set = syncer[0]()
+            reference_marked_set = reference[0]()
+            log.warning(f'{reference_marked_set} ---> {syncer_marked_set}')
+            syncer[1]([Comment(bid, cid) for bid, cid in reference_marked_set if (bid, cid) not in syncer_marked_set])
+
     log.debug('标记数据同步完毕')

@@ -25,6 +25,12 @@ class Comment(object):
     def __str__(self) -> str:
         return f'[ {self.bv} -- {self.id} -- {self.uid} -- {self.uname}: {self.message} ]'
 
+    def to_dict(self):
+        return {
+            'bid': self.bv,
+            'cid': self.id
+        }
+
 
 async def get_comments(bv):
     """

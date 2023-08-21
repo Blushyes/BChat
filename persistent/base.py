@@ -15,6 +15,7 @@ def save_json(name, info):
 class MarkStrategy:
     SIMPLE = 'simple'
     MYSQL = 'mysql'
+    DELEGATE = 'delegate'
 
 
 def get_mark_strategy(mark_strategy_type: str):
@@ -24,6 +25,9 @@ def get_mark_strategy(mark_strategy_type: str):
     elif MarkStrategy.MYSQL == mark_strategy_type:
         import persistent.mysql as mysql
         return mysql.mark, mysql.marked_set
+    elif MarkStrategy.DELEGATE == mark_strategy_type:
+        import persistent.delegate as delegate
+        return delegate.mark, delegate.marked_set
     else:
         raise Exception('不存在的标记策略')
 

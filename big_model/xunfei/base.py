@@ -1,16 +1,12 @@
-import configparser
+from . import SparkApi
+from config import log, config
 
-import SparkApi
-from config import log
+XUNFEI_CONFIG = 'model.xunfei'
 
-XUNFEI = 'XUN_FEI'
-
-config = configparser.ConfigParser()
-config.read('api.ini')
-
-appid = config.get(XUNFEI, 'appid')
-api_secret = config.get(XUNFEI, 'api_secret')
-api_key = config.get(XUNFEI, 'api_key')
+# 讯飞星火模型参数配置
+appid = config.get_xunfei_config('appid')
+api_secret = config.get_xunfei_config('api_secret')
+api_key = config.get_xunfei_config('api_key')
 
 # 用于配置大模型版本，默认“general/generalv2”
 domain = "general"  # v1.5版本
@@ -86,16 +82,20 @@ def _pre_ask(content: str):
                f'现在，列表为：{[i for i in preset.keys()]}，我给你的句子是："{content}"'
     print('question', question)
     response = _proxy_ask(question)
-    flag, key = response.split('|')
-    # 要strip三次的原因是防止遇见这样的情况：'"hello"'，这样的话里面的双引号无法消除
-    # key = key.strip('"').strip("'").strip('"')
-    while key.startswith('"') or key.startswith("'"):
-        key = key.strip(key[0])
+    # 防止出现空回复或者只回复了 T or F
+    try:
+        flag, key = response.split('|')
+        # 要strip三次的原因是防止遇见这样的情况：'"hello"'，这样的话里面的双引号无法消除
+        # key = key.strip('"').strip("'").strip('"')
+        while key.startswith('"') or key.startswith("'"):
+            key = key.strip(key[0])
 
-    # TODO 如果有相似的，则存入简单表，之后直接查简单表就行
-    if key in preset and flag == PresetFlag.T:
-        return flag, preset[key]
-    return flag, None
+        # TODO 如果有相似的，则存入简单表，之后直接查简单表就行
+        if key in preset and flag == PresetFlag.T:
+            return flag, preset[key]
+        return flag, None
+    except Exception:
+        return response, question
 
 
 def _ask(content):
@@ -118,4 +118,5 @@ def _proxy_ask(content) -> str:
     return _ask(content)[-1]['content']
 
 
-print(ask("你是谁？"))
+if __name__ == '__main__':
+    print(ask("你是谁？"))

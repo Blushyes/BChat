@@ -1,5 +1,12 @@
+import configparser
 import logging
 import platform
+
+CONFIG_FILENAME = 'config.ini'
+XUNFEI_CONFIG = 'model.xunfei'
+MYSQL_CONFIG = 'mysql'
+GLOBAL_CONFIG = 'global'
+PERSISTENT_CONFIG = 'persistent'
 
 
 class RuntimePlatform:
@@ -18,6 +25,8 @@ class Config:
     credential = ''
     session_dict = {}
     runtime_platform = None
+    _parser = configparser.ConfigParser()
+    reply_switch = False
 
     # 默认为开发环境
     profile = Profile.DEV
@@ -35,6 +44,13 @@ class Config:
         else:
             self.runtime_platform = RuntimePlatform.UNKNOWN
 
+        # 读取配置文件
+        self._parser.read(CONFIG_FILENAME)
+
+        # 获取开关配置
+        self.reply_switch = self.get(GLOBAL_CONFIG, 'reply_switch') == 'ON'
+
+        print(self._parser.sections())
         print(f'当前登录平台为{self.runtime_platform}')
 
     def __new__(cls, *args, **kwargs):
@@ -42,11 +58,23 @@ class Config:
             cls._instance = super().__new__(cls, *args, **kwargs)
         return cls._instance
 
+    def __str__(self) -> str:
+        return f'credential: {self.credential}'
+
     def set_credential(self, credential):
         self.credential = credential
 
-    def __str__(self) -> str:
-        return f'credential: {self.credential}'
+    def get(self, section, option):
+        return self._parser.get(section, option)
+
+    def get_xunfei_config(self, key):
+        return self.get(XUNFEI_CONFIG, key)
+
+    def get_mysql_config(self, key):
+        return self.get(MYSQL_CONFIG, key)
+
+    def get_persistent_config(self, key):
+        return self.get(PERSISTENT_CONFIG, key)
 
 
 # 唯一的单例config

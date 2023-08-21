@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS marked;
+CREATE TABLE marked(
+    `id` BIGINT NOT NULL AUTO_INCREMENT  COMMENT 'ID' ,
+    `bid` VARCHAR(255) NOT NULL   COMMENT '视频BV号' ,
+    `cid` BIGINT NOT NULL   COMMENT '评论的ID' ,
+    PRIMARY KEY (id)
+)  COMMENT = '标记已经评论过的数据';

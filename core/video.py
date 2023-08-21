@@ -1,8 +1,8 @@
 from bilibili_api import user
 
-import persistent
+import persistent.base as persistent
 from config import config, log
-from login import login, get_session
+from core.login import login, get_session
 
 
 async def get_all_videos(uid=1472871866, persistent_response=False):
@@ -21,7 +21,7 @@ async def get_all_videos(uid=1472871866, persistent_response=False):
     videos = []
     for video in response['list']['vlist']:
         videos.append(video['bvid'])
-    log.info(videos)
+    log.debug(videos)
 
     # 持久化 response
     if persistent_response:

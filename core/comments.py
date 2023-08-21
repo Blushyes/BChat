@@ -1,6 +1,6 @@
 from bilibili_api import comment
 
-import login
+import core.login as login
 from config import log
 
 
@@ -15,7 +15,7 @@ class Comment(object):
     message：评论的内容
     """
 
-    def __init__(self, bv, cid, uid, uname, message):
+    def __init__(self, bv: str, cid: int, uid: int = None, uname: str = None, message: str = None):
         self.bv = bv
         self.id = cid
         self.uid = uid
@@ -76,6 +76,8 @@ async def send_comment(credential, content, oid, replied):
 
     oid: BV号
     replied: 父评论的id
+
+    返回是否回复成功
     """
     # 获取大模型的回答内容
     # TODO 考虑抽象回答模块
@@ -90,5 +92,7 @@ async def send_comment(credential, content, oid, replied):
         try:
             await comment.send_comment(oid=oid, text=answer, type_=comment.CommentResourceType.VIDEO,
                                        credential=login.get_session(credential), root=replied)
+            return True
         except Exception as e:
             log.error(e)
+            return False

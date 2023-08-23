@@ -1,3 +1,4 @@
+import httpx
 from bilibili_api import comment
 
 import core.login as login
@@ -25,10 +26,19 @@ class Comment(object):
     def __str__(self) -> str:
         return f'[ {self.bv} -- {self.id} -- {self.uid} -- {self.uname}: {self.message} ]'
 
-    def to_dict(self):
+    def to_simple_dict(self):
         return {
             'bid': self.bv,
             'cid': self.id
+        }
+
+    def to_full_dict(self):
+        return {
+            'bid': self.bv,
+            'cid': self.id,
+            'uid': self.uid,
+            'uname': self.uname,
+            'message': self.message,
         }
 
 
@@ -44,7 +54,17 @@ async def get_comments(bv):
     count = 0
     while True:
         # 获取评论
-        c = await comment.get_comments(bv, comment.CommentResourceType.VIDEO, page)
+        try:
+            c = await comment.get_comments(bv, comment.CommentResourceType.VIDEO, page)
+        except httpx.ReadTimeout as time_out:
+            log.error('获取B站评论时请求超时')
+            log.error(time_out)
+            continue
+        except Exception as e:
+            log.error('获取B站评论时发生错误')
+            log.error(e)
+            continue
+
         # 存储评论
         if c['replies']:
             comments.extend(c['replies'])
@@ -98,7 +118,7 @@ async def send_comment(credential, content, oid, replied):
         try:
             await comment.send_comment(oid=oid, text=answer, type_=comment.CommentResourceType.VIDEO,
                                        credential=login.get_session(credential), root=replied)
-            return True
         except Exception as e:
             log.error(e)
             return False
+    return True

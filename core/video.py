@@ -1,3 +1,4 @@
+import httpx
 from bilibili_api import user
 
 import persistent.base as persistent
@@ -15,7 +16,16 @@ async def get_all_videos(uid=1472871866, persistent_response=False):
         config.credential))
 
     # 原始的 response
-    response = await myself.get_videos()
+    try:
+        response = await myself.get_videos()
+    except httpx.ConnectTimeout as e:
+        log.error('获取视频列表时连接超时')
+        log.error(e)
+        return []
+    except Exception as e:
+        log.error('获取视频列表时出错')
+        log.error(e)
+        return []
 
     # 获取所有视频的BV号
     videos = []

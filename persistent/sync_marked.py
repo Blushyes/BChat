@@ -4,7 +4,7 @@ import persistent.simple as simple
 from config import log
 from core.comments import Comment
 
-
+# TODO 如果没有那个回复策略的配置，则不需要同步那个策略
 def sync():
     log.debug('开始同步标记数据')
     sync_list = [

@@ -1,0 +1,34 @@
+[global]
+; 回复功能开关，ON为开启，需要打开才能自动回复
+reply_switch = [ ON | OFF ]
+
+; 讯飞大模型的APPID、API_SECRET、API_KEY，需要去讯飞开放平台注册并获取
+[model.xunfei]
+appid = xxx
+api_secret = xxx
+api_key = xxx
+
+; mysql数据库连接参数，如果persistent的strategy设置为mysql则需要配置
+[mysql]
+host = localhost
+port = 3306
+user = YOUR_USERNAME
+password = YOUR_PASSWORD
+database = bchat
+
+; rabbitmq连接参数，如果persistent的strategy设置为delegate则需要配置
+[rabbitmq]
+host = localhost
+username = YOUR_USERNAME
+password = YOUR_PASSWORD
+
+[delegate]
+; 委托服务的主机IP，persistent的strategy为delegate需要配置
+host = localhost
+
+[persistent]
+; 已回复评论标记的持久化策略
+; simple：简单标记模式，即在根目录创建一个markedfile文件
+; mysql：连接mysql进行标记
+; delegate：委托标记策略，委托其他服务进行标记
+strategy = [ simple | mysql | delegate ]

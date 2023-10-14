@@ -9,8 +9,8 @@ def sync():
     log.debug('开始同步标记数据')
     sync_list = [
         [simple.marked_set, simple.mark],
-        [mysql.marked_set, mysql.mark],
-        [delegate.marked_set, delegate.mark]
+        [mysql.marked_set, mysql.mark]
+        # [delegate.marked_set, delegate.mark]
     ]
     for i in range(len(sync_list)):
         for j in range(len(sync_list)):

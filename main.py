@@ -1,12 +1,14 @@
-from big_model.reply_myself import ReplyMyself
-from core.login import login
+from concurrent.futures import ThreadPoolExecutor
 
-# 回复自己视频实例
+from core.login import login
+from core.plugin import SimplePluginManager
+
 # 1472871866
-reply_self = ReplyMyself(1472871866)
 
 if __name__ == '__main__':
-    login()
-    reply_self.start_loop()
-    # import listener.reply_myself_creator as reply
-    # reply.listen_qrcode_login()
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        # 登录
+        login()
+
+        # 创建插件管理器
+        plugin_manager = SimplePluginManager(executor)

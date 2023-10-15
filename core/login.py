@@ -9,9 +9,10 @@ from bilibili_api import login_func
 import persistent.base as persistent
 import persistent.delegate as delegate
 from config import config, RuntimePlatform, log
+from utils.context import is_delegate
 
 
-def login(uid=None):
+def login():
     """
     登录并获取凭证
     """
@@ -26,11 +27,12 @@ def login(uid=None):
         img.save(data, format='JPEG')
         data.seek(0)
         # 把图片发给后端
-        delegate.post('/login/img', '', {}, {'img': data.read()})
+        if is_delegate():
+            delegate.post('/login/img', '', {}, {'img': data.read()})
     except Exception as e:
         log.error(e)
         # 重新登录一下
-        return login(uid)
+        return login()
 
     log.info(f'{picture} {credential}')
     log.info('二维码获取完毕，请前往扫码')

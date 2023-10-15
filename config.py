@@ -45,7 +45,7 @@ class Config:
             self.runtime_platform = RuntimePlatform.UNKNOWN
 
         # 读取配置文件
-        self._parser.read(CONFIG_FILENAME)
+        self._parser.read(CONFIG_FILENAME, encoding='utf-8')
 
         # 获取开关配置
         self.reply_switch = self.get(GLOBAL_CONFIG, 'reply_switch') == 'ON'

@@ -1,8 +1,8 @@
-import persistent.delegate as delegate
 import persistent.mysql as mysql
 import persistent.simple as simple
 from config import log
-from core.comments import Comment
+from core.comment.comment import Comment
+
 
 # TODO 如果没有那个回复策略的配置，则不需要同步那个策略
 def sync():

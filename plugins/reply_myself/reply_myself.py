@@ -5,7 +5,7 @@ import random
 import big_model.xunfei.base as xunfei
 import persistent.base as persistent
 from config import config, Profile
-from core.comments import *
+from core.comment.comments import *
 from core.video import get_all_videos
 from persistent import delegate
 from persistent.simple import SIMPLE_MARKED_FILENAME
@@ -17,7 +17,6 @@ class ReplyMyself:
     """
     回复自己视频的评论
     """
-    _UID = None
 
     def __init__(self, uid):
         self._UID = uid

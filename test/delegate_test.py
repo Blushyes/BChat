@@ -11,7 +11,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_mq_mark(self):
         from persistent.delegate import mark
-        from core.comments import Comment
+        from core.comment.comments import Comment
         comment_list = [Comment('a', 1), Comment('b', 2), Comment('c', 3)]
         mark(comment_list)
 

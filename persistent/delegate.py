@@ -4,7 +4,7 @@ import pika
 import requests
 
 from config import config, log
-from core.comments import Comment
+from core.comment.comment import Comment
 
 rabbitmq_host = config.get('rabbitmq', 'host')
 delegate_host = config.get('delegate', 'host')

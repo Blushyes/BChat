@@ -1,17 +1,21 @@
-import persistent.mysql as mysql
 import persistent.simple as simple
-from config import log
+from config import log, config
 from core.comment.comment import Comment
 
 
 # TODO 如果没有那个回复策略的配置，则不需要同步那个策略
 def sync():
     log.debug('开始同步标记数据')
+
     sync_list = [
-        [simple.marked_set, simple.mark],
-        [mysql.marked_set, mysql.mark]
+        [simple.marked_set, simple.mark]
+        # [mysql.marked_set, mysql.mark]
         # [delegate.marked_set, delegate.mark]
     ]
+    parser = config.get_parser()
+    if parser.has_section('mysql'):
+        import persistent.mysql as mysql
+        sync_list.append([mysql.marked_set, mysql.mark])
     for i in range(len(sync_list)):
         for j in range(len(sync_list)):
             if i == j: continue

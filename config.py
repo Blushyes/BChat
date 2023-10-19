@@ -76,6 +76,9 @@ class Config:
     def get_persistent_config(self, key):
         return self.get(PERSISTENT_CONFIG, key)
 
+    def get_parser(self):
+        return self._parser
+
 
 # 唯一的单例config
 config = Config()

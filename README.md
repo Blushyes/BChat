@@ -50,6 +50,11 @@ B站回复小助手，接入大模型自动回复。
    ; mysql：连接mysql进行标记
    ; delegate：委托标记策略，委托其他服务进行标记
    strategy = simple   
+   
+   ; 这个是 reply_myself 插件（自动回复自己的评论区）的配置项
+   [reply_myself]
+   ; 注意要和你扫码那个B站号的UID一致
+   uid=你的B站的UID
    ```
 
 4. 安装`docker`
@@ -84,6 +89,11 @@ B站回复小助手，接入大模型自动回复。
    ; mysql：连接mysql进行标记
    ; delegate：委托标记策略，委托其他服务进行标记
    strategy = simple   
+   
+   ; 这个是 reply_myself 插件（自动回复自己的评论区）的配置项
+   [reply_myself]
+   ; 注意要和你扫码那个B站号的UID一致
+   uid=你的B站的UID
    ```
 
 3. 安装`Python`环境

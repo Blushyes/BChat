@@ -7,7 +7,7 @@ import persistent.base as persistent
 from config import config, Profile
 from core.comment.comments import *
 from core.video import get_all_videos
-from persistent import delegate
+# from persistent import delegate
 from persistent.simple import SIMPLE_MARKED_FILENAME
 
 SLEEP_TIME = 10
@@ -79,10 +79,10 @@ async def reply(cmt, mark_switch=False):
                 persistent.mark([cmt])
 
             # 如果采用委托策略，则发送已回复的数据
-            if persistent.MarkStrategy.DELEGATE == config.get_persistent_config('strategy'):
-                full_dict = cmt.to_full_dict()
-                full_dict['answer'] = answer
-                delegate.send('commented', full_dict)
+            # if persistent.MarkStrategy.DELEGATE == config.get_persistent_config('strategy'):
+            #     full_dict = cmt.to_full_dict()
+            #     full_dict['answer'] = answer
+            #     delegate.send('commented', full_dict)
             log.info('已回复')
             return True
         else:

@@ -1,9 +1,11 @@
 import httpx
-from bilibili_api import comment
+from bilibili_api import comment, Credential, Api
 
 import core.login as login
 from config import log
-from core.comment.comment import Comment
+from core.comment.comment import Comment, AtItem
+
+GET_AT_URL = 'https://api.bilibili.com/x/msgfeed/at?build=0&mobi_app=web'
 
 
 async def get_comments(bv):
@@ -54,20 +56,33 @@ async def get_comments(bv):
 
 
 async def get_comments_list(bv_list) -> list[Comment]:
+    """
+    根据bv号列表获取评论列表
+
+    Args:
+        bv_list: BV号列表
+
+    Returns:
+
+    """
     comment_list = []
     for bv in bv_list:
         comment_list.extend(await get_comments(bv))
     return comment_list
 
 
-async def send_comment(credential, content, oid, replied):
+async def send_comment(credential: str, content: str, oid, replied: int | None):
     """
     发送评论
 
-    oid: BV号
-    replied: 父评论的id
+    Args:
+        credential: 用户登录凭证
+        content: 评论的内容
+        oid: 资源 ID
+        replied: 根评论 ID
 
-    返回是否回复成功
+    Returns:
+        是否发送成功
     """
     # 获取大模型的回答内容
     # TODO 考虑抽象回答模块
@@ -86,3 +101,26 @@ async def send_comment(credential, content, oid, replied):
             log.error(e)
             return False
     return True
+
+
+async def get_at_list(credential: Credential) -> list[AtItem]:
+    """
+    获取@我的列表
+
+    Args:
+        credential: 凭证
+
+    Returns:
+
+    """
+    res = await Api(url=GET_AT_URL, credential=credential, method='get').result
+    log.debug(res)
+    items = res['items']
+    return [AtItem(
+        item['id'],
+        item['item']['uri'].split('/')[-1].strip(),
+        item['item']['title'],
+        item['item']['source_content'],
+        item['user']['mid'],
+        item['item']['source_id']
+    ) for item in items]

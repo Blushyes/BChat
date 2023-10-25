@@ -18,6 +18,7 @@ async def get_all_videos(uid=1472871866, persistent_response=False):
     # 原始的 response
     try:
         response = await myself.get_videos()
+        log.debug(f'videos: {response}')
     except httpx.ConnectTimeout as e:
         log.error('获取视频列表时连接超时')
         log.error(e)

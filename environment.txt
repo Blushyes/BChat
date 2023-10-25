@@ -2,3 +2,4 @@ bilibili-api-python
 websocket-client
 pymysql
 pika
+whisper

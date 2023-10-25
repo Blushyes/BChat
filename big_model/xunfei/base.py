@@ -1,5 +1,5 @@
-from . import SparkApi
 from config import log, config
+from . import SparkApi
 
 XUNFEI_CONFIG = 'model.xunfei'
 
@@ -63,6 +63,10 @@ def ask(content: str):
     # TODO 复杂预处理之前还需要一道简单查表预处理
     flag, answer = _pre_ask(content)
     return answer if flag == PresetFlag.T else _proxy_ask(content)
+
+
+def direct_ask(content: str):
+    return _proxy_ask(content)
 
 
 def _simple_pre_ask(content):

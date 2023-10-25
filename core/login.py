@@ -59,7 +59,7 @@ def login():
     # if persistent.MarkStrategy.DELEGATE == config.get_persistent_config('strategy'):
     #     response = delegate.post('/login', json.dumps({'credential': credential, 'uid': str(uid)}).encode('utf-8'))
     config.credential = credential
-    return response
+    return credential
 
 
 def get_session(credential):

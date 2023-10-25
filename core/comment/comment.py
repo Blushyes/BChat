@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+
+
 class Comment(object):
     """
     评论封装类
@@ -33,3 +36,22 @@ class Comment(object):
             'uname': self.uname,
             'message': self.message,
         }
+
+
+@dataclass
+class AtItem:
+    """
+    Args:
+        id: @的唯一ID
+        video_title: 被@的视频的标题
+        content: @的完整内容
+        mid: @我的那个人的UID
+        source_id: 资源的ID，比如说评论
+
+    """
+    id: int
+    bid: str
+    video_title: str
+    content: str
+    mid: int
+    source_id: int

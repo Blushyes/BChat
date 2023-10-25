@@ -1,6 +1,9 @@
+import asyncio
 import configparser
 import logging
 import platform
+
+from bilibili_api.user import User
 
 CONFIG_FILENAME = 'config.ini'
 XUNFEI_CONFIG = 'model.xunfei'
@@ -20,6 +23,7 @@ class Profile:
     DEV = 'dev'
 
 
+# TODO 待优化，这部分比较混乱
 class Config:
     _instance = None
     credential = ''
@@ -27,6 +31,8 @@ class Config:
     runtime_platform = None
     _parser = configparser.ConfigParser()
     reply_switch = False
+    uid = None
+    USER = None
 
     # 默认为开发环境
     profile = Profile.DEV
@@ -48,8 +54,11 @@ class Config:
         self._parser.read(CONFIG_FILENAME, encoding='utf-8')
 
         # 获取开关配置
-        self.reply_switch = self.get(GLOBAL_CONFIG, 'reply_switch') == 'ON'
+        self.reply_switch = self.get(GLOBAL_CONFIG, 'reply_myself_switch') == 'ON'
+        if not self._parser.get('global', 'uid'):
+            raise Exception('没有设置config.ini中的uid')
 
+        self.uid = int(self._parser.get('global', 'uid'))
         print(self._parser.sections())
         print(f'当前登录平台为{self.runtime_platform}')
 
@@ -78,6 +87,12 @@ class Config:
 
     def get_parser(self):
         return self._parser
+
+    def is_fans(self, uid):
+        if not self.USER:
+            from core.login import get_session
+            self.USER = User(self.uid, get_session(self.credential))
+        return asyncio.run(self.USER.get_relation(uid))['be_relation']['mid'] == self.uid
 
 
 # 唯一的单例config

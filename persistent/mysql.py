@@ -2,7 +2,7 @@
 import pymysql.cursors
 
 from config import config
-from core.comment.comments import Comment
+from core.comment.comment import Comment
 
 host = config.get_mysql_config('host')
 port = config.get_mysql_config('port')

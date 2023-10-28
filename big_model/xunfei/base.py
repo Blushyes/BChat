@@ -1,12 +1,20 @@
-from config import log, config
+from context.config import DefaultConfig
+from context.main import context, log
 from . import SparkApi
 
-XUNFEI_CONFIG = 'model.xunfei'
+
+def get_xunfei_config(item: str):
+    return context.config_manager.get_config(
+        DefaultConfig.MODEL,
+        DefaultConfig.Model.XUNFEI,
+        item
+    )
+
 
 # 讯飞星火模型参数配置
-appid = config.get_xunfei_config('appid')
-api_secret = config.get_xunfei_config('api_secret')
-api_key = config.get_xunfei_config('api_key')
+appid = get_xunfei_config(DefaultConfig.Model.XunFei.APPID)
+api_secret = get_xunfei_config(DefaultConfig.Model.XunFei.API_SECRET)
+api_key = get_xunfei_config(DefaultConfig.Model.XunFei.API_KEY)
 
 # 用于配置大模型版本，默认“general/generalv2”
 domain = "general"  # v1.5版本

@@ -1,19 +1,14 @@
 import httpx
-from bilibili_api import user
 
 import persistent.base as persistent
-from config import config, log
-from core.login import login, get_session
+from context.main import context, log
 
 
 async def get_all_videos(uid=1472871866, persistent_response=False):
     """
     获取某个用户所有的视频的BV号
     """
-    if not config.credential:
-        config.credential = login()
-    myself = user.User(uid, get_session(
-        config.credential))
+    myself = context.session_dict[uid].user
 
     # 原始的 response
     try:

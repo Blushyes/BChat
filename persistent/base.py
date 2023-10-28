@@ -1,10 +1,14 @@
 import json
 
-from config import config
+from context.config import DefaultConfig
+from context.main import context
 from . import sync_marked
 
 # 获取标记策略
-mark_strategy = config.get_persistent_config('strategy')
+mark_strategy = context.config_manager.get_config(
+    DefaultConfig.PERSISTENT,
+    DefaultConfig.Persistent.STRATEGY
+)
 
 
 def save_json(name, info):

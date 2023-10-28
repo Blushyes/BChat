@@ -1,51 +1,55 @@
-import logging
 import time
+import traceback
 from io import BytesIO
 
 from PIL import Image
-from bilibili_api import login_func
+from bilibili_api import login_func, Credential
+from bilibili_api.user import User
 
-from config import config, RuntimePlatform, log
+from context.main import log, context, RuntimePlatform, LoginInfo
 
 
-def login():
+def login(uid: int) -> LoginInfo:
     """
     登录并获取凭证
     """
+
     # 获取登录二维码
     log.info('正在获取登录二维码...')
     try:
-        picture, credential = login_func.get_qrcode()
+        picture, credential_str = login_func.get_qrcode()
+
         # 打开图片文件
         img = Image.open(picture.url.replace('file://', ''))
+
         # 将图片转换为二进制数据
         data = BytesIO()
         img.save(data, format='JPEG')
         data.seek(0)
-        # 把图片发给后端
-        # if is_delegate():
-        #     import persistent.delegate as delegate
-        #     delegate.post('/login/img', '', {}, {'img': data.read()})
-    except Exception as e:
-        log.error(e)
-        # 重新登录一下
-        return login()
 
-    log.info(f'{picture} {credential}')
+    except Exception:
+        traceback.format_exc()
+
+        # 重新登录一下
+        return login(uid)
+
+    log.info(f'{picture} {credential_str}')
     log.info('二维码获取完毕，请前往扫码')
 
     while True:
-        state, session = login_func.check_qrcode_events(credential)
+        state, credential = login_func.check_qrcode_events(credential_str)
+        user = User(uid, credential)
+        login_info = LoginInfo(credential_str, credential, user)
 
         # 检测登录状态，若已经登录则进行下一步动作
         log.info(f'当前二维码状态为：{state}')
         if state == login_func.QrCodeLoginEvents.DONE:
             # 存session
-            config.session_dict[credential] = session
+            context.session_dict[uid] = login_info
             break
 
         # 如果操作系统为Windows则直接打开图片扫码
-        if RuntimePlatform.WINDOWS == config.runtime_platform:
+        if RuntimePlatform.WINDOWS == context.runtime_platform:
             img.show()
 
         time.sleep(3)
@@ -54,34 +58,25 @@ def login():
     log.info('登录成功，程序开始运行...')
     img.close()
 
-    # 登录成功发送登录成功的消息
-    response = None
-    # if persistent.MarkStrategy.DELEGATE == config.get_persistent_config('strategy'):
-    #     response = delegate.post('/login', json.dumps({'credential': credential, 'uid': str(uid)}).encode('utf-8'))
-    config.credential = credential
-    return credential
+    return login_info
 
 
-def get_session(credential):
+def get_session(uid: int) -> Credential:
     """
     获取凭证对象
 
-    credential: 凭证str
+    Args:
+        uid: 用户的UID
+
+    Returns:
+        billbill_api的登录的凭证
+
     """
-    # 如果凭证为空则需要登录
-    if not credential or credential == '':
-        credential = login()
+
+    assert uid
 
     # 若session已经存在则直接返回
-    if credential in config.session_dict:
-        return config.session_dict[credential]
+    if uid in context.session_dict:
+        return context.session_dict[uid].credential
 
-    state, session = login_func.check_qrcode_events(credential)
-
-    print(state, credential)
-    if login_func.QrCodeLoginEvents.DONE == state:
-        config.session_dict[credential] = session
-        return session
-    else:
-        logging.error(f'用户未登录，登录状态为：{state}')
-        return get_session(login())
+    return login(uid).credential

@@ -3,7 +3,6 @@ import json
 import pika
 import requests
 
-from config import config, log
 from core.comment.comment import Comment
 
 rabbitmq_host = config.get('rabbitmq', 'host')

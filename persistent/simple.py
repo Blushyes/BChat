@@ -1,6 +1,6 @@
 import os
 
-from config import log
+from context.main import log
 from core.comment.comment import Comment
 
 SIMPLE_MARKED_FILENAME = 'markedfile'

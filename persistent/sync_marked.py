@@ -1,5 +1,5 @@
 import persistent.simple as simple
-from config import log, config
+from context.main import context, log
 from core.comment.comment import Comment
 
 
@@ -12,8 +12,7 @@ def sync():
         # [mysql.marked_set, mysql.mark]
         # [delegate.marked_set, delegate.mark]
     ]
-    parser = config.get_parser()
-    if parser.has_section('mysql'):
+    if context.config_manager.exists('mysql'):
         import persistent.mysql as mysql
         sync_list.append([mysql.marked_set, mysql.mark])
     for i in range(len(sync_list)):

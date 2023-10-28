@@ -1,0 +1,17 @@
+{
+  "global": {
+    "reply_myself_switch": "ON",
+    "analyse_at_me_switch": "ON",
+    "uid": 1472871866
+  },
+  "model": {
+    "xunfei": {
+      "appid": "你的讯飞星火大模型的APPID",
+      "api_secret": "你的讯飞星火大模型的API_SECRET",
+      "api_key": "你的讯飞星火大模型的API_KEY"
+    }
+  },
+  "persistent": {
+    "strategy": "simple"
+  }
+}

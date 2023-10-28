@@ -4,7 +4,7 @@ import random
 
 import big_model.xunfei.base as xunfei
 import persistent.base as persistent
-from config import config, Profile
+from context.main import context, Profile
 from core.comment.comments import *
 from core.video import get_all_videos
 # from persistent import delegate
@@ -42,7 +42,7 @@ class ReplyMyself:
                 if (cmt.bv, cmt.id) in marked:
                     log.debug(f'评论 [{cmt.id}] 已回复')
                     continue
-                if config.profile == Profile.PROD:  # 生产环境下，通过 Q 开头
+                if context.profile == Profile.PROD:  # 生产环境下，通过 Q 开头
                     if cmt.message.startswith('Q:') or cmt.message.startswith('Q：'):
                         cmt.message.replace('Q:', '')
                         cmt.message.replace('Q：', '')
@@ -50,7 +50,7 @@ class ReplyMyself:
                             replied_list.append(cmt)
 
 
-                elif config.profile == Profile.DEV:  # 开发环境下，通过 T 开头
+                elif context.profile == Profile.DEV:  # 开发环境下，通过 T 开头
                     if cmt.message.startswith('T:') or cmt.message.startswith('T：'):
                         cmt.message.replace('T:', '')
                         cmt.message.replace('T：', '')
@@ -71,9 +71,9 @@ async def reply(cmt, mark_switch=False):
     """
     log.info(f'问题：{cmt.message}')
     log.info('正在准备回复中......')
-    if config.reply_switch:
+    if context.config_manager.get_config('global', 'reply_myself_switch') == 'ON':
         answer = xunfei.ask(cmt.message)
-        if await send_comment(config.credential, answer, cmt.bv, cmt.id):
+        if await send_comment(context.session_dict[context.uid].credential, answer, cmt.bv, cmt.id):
             # 如果单回复标记开关打开才进行单回复标记
             if mark_switch:
                 persistent.mark([cmt])

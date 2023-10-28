@@ -162,4 +162,5 @@ cython_debug/
 # 额外的文件
 **/.idea/
 **/config.ini
+**/config.json
 **/setting.py

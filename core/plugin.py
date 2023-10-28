@@ -2,10 +2,11 @@ import importlib
 import json
 import os
 import sys
+import traceback
 from concurrent.futures import ThreadPoolExecutor
 
-from config import log
 from consts.names import PLUGIN_DIR_NAME, PLUGIN_CONFIG_FILE_NAME
+from context.main import log
 from exceptions.context import NotImplementException
 
 
@@ -68,11 +69,13 @@ class SimplePluginManager(PluginManager):
 
                 try:
                     plugin = Plugin(plugin_config)
+
                     # 运行当前插件
                     main = importlib.import_module(plugin_path + '.main', package='widget')
                     executor.submit(main.start)
                 except Exception as e:
-                    log.error(f'解析{plugin_path}插件时出现问题：{e} 跳过当前插件')
+                    traceback.format_exc()
+                    log.error(f'解析{plugin_path}插件时出现问题：{e}，跳过当前插件')
                     continue
                 plugins.append(plugin)
         self._plugins = {plugin.name: plugin for plugin in plugins}

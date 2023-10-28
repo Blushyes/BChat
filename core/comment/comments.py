@@ -2,7 +2,7 @@ import httpx
 from bilibili_api import comment, Credential, Api
 
 import core.login as login
-from config import log
+from context.main import log
 from core.comment.comment import Comment, AtItem
 
 GET_AT_URL = 'https://api.bilibili.com/x/msgfeed/at?build=0&mobi_app=web'
@@ -71,7 +71,7 @@ async def get_comments_list(bv_list) -> list[Comment]:
     return comment_list
 
 
-async def send_comment(credential: str, content: str, oid, replied: int | None):
+async def send_comment(credential: Credential, content: str, oid, replied: int | None):
     """
     发送评论
 
@@ -96,7 +96,7 @@ async def send_comment(credential: str, content: str, oid, replied: int | None):
         # 这里对该情况进行处理
         try:
             await comment.send_comment(oid=oid, text=answer, type_=comment.CommentResourceType.VIDEO,
-                                       credential=login.get_session(credential), root=replied)
+                                       credential=credential, root=replied)
         except Exception as e:
             log.error(e)
             return False

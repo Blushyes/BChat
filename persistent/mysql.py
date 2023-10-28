@@ -1,14 +1,20 @@
 # 连接MySQL
 import pymysql.cursors
 
-from config import config
+from context.config import DefaultConfig
+from context.main import context
 from core.comment.comment import Comment
 
-host = config.get_mysql_config('host')
-port = config.get_mysql_config('port')
-user = config.get_mysql_config('user')
-password = config.get_mysql_config('password')
-database = config.get_mysql_config('database')
+
+def get_mysql_config(item: str):
+    return context.config_manager.get_config(DefaultConfig.MYSQL, item)
+
+
+host = get_mysql_config('host')
+port = get_mysql_config('port')
+user = get_mysql_config('user')
+password = get_mysql_config('password')
+database = get_mysql_config('database')
 
 
 def connect():

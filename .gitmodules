@@ -1,0 +1,3 @@
+[submodule "plugins/analyse_refer"]
+	path = plugins/analyse_refer
+	url = https://github.com/Blushyes/bc-plugin-analyse-refer.git

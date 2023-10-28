@@ -163,6 +163,3 @@ cython_debug/
 **/.idea/
 **/config.ini
 **/setting.py
-
-# 分析@视频内测维护中......
-plugins/analyse_refer

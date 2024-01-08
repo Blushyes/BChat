@@ -1,5 +1,6 @@
-bilibili-api-python
 websocket-client
 pymysql
 pika
 whisper
+cryptography
+git+https://github.com/Nemo2011/bilibili-api.git@dev

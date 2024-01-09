@@ -60,7 +60,7 @@ B站回复小助手，接入大模型自动回复。
     ./build.sh
     ```
 
-6. 现在程序已经运行了，在`BChat/tmp`文件夹内找到`qrcode.png`文件打开并扫码即可登录成功
+6. 现在程序已经运行了，运行 `docker logs -f bill-chat` 即可扫码登录
 
 #### Windows
 

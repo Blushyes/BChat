@@ -1,5 +1,5 @@
 import httpx
-from bilibili_api import comment, Credential, Api
+from bilibili_api import comment, Credential
 
 import core.login as login
 from context.main import log
@@ -103,24 +103,24 @@ async def send_comment(credential: Credential, content: str, oid, replied: int |
     return True
 
 
-async def get_at_list(credential: Credential) -> list[AtItem]:
-    """
-    获取@我的列表
-
-    Args:
-        credential: 凭证
-
-    Returns:
-
-    """
-    res = await Api(url=GET_AT_URL, credential=credential, method='get').result
-    log.debug(res)
-    items = res['items']
-    return [AtItem(
-        item['id'],
-        item['item']['uri'].split('/')[-1].strip(),
-        item['item']['title'],
-        item['item']['source_content'],
-        item['user']['mid'],
-        item['item']['source_id']
-    ) for item in items]
+# async def get_at_list(credential: Credential) -> list[AtItem]:
+#     """
+#     获取@我的列表
+#
+#     Args:
+#         credential: 凭证
+#
+#     Returns:
+#
+#     """
+#     res = await Api(url=GET_AT_URL, credential=credential, method='get').result
+#     log.debug(res)
+#     items = res['items']
+#     return [AtItem(
+#         item['id'],
+#         item['item']['uri'].split('/')[-1].strip(),
+#         item['item']['title'],
+#         item['item']['source_content'],
+#         item['user']['mid'],
+#         item['item']['source_id']
+#     ) for item in items]

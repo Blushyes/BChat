@@ -3,4 +3,4 @@ pymysql
 pika
 whisper
 cryptography
-git+https://github.com/Nemo2011/bilibili-api.git@dev
+bilibili-api-python==16.2.0

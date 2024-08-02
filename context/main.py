@@ -87,7 +87,8 @@ class BChatContext:
 
         logging.info("初始化全局日志器")
         self._init_global_log()
-        self.global_logger.info(f"当前登录平台为{self.runtime_platform}")
+        # if self.runtime_platform:
+        #     self.global_logger.info(f"当前登录平台为{self.runtime_platform}")
 
 
 # 初始化上下文

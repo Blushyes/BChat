@@ -3,7 +3,7 @@ import json
 import pika
 import requests
 
-from core.comment.comment import Comment
+from core.comment.__init__ import Comment
 
 rabbitmq_host = config.get('rabbitmq', 'host')
 delegate_host = config.get('delegate', 'host')

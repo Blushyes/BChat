@@ -1,6 +1,6 @@
 import logging
 import traceback
-from core.login.main import LoginInfo, LoginManager
+from core.login.__init__ import LoginInfo, LoginManager
 from bilibili_api import login
 from bilibili_api.user import User
 

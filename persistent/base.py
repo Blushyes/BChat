@@ -1,7 +1,7 @@
 import json
 
 from context.config import DefaultConfig
-from context.main import context
+from context.__init__ import context
 from . import sync_marked
 
 # 获取标记策略

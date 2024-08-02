@@ -1,6 +1,6 @@
 import persistent.simple as simple
-from context.main import context, log
-from core.comment.comment import Comment
+from context.__init__ import context, log
+from core.comment.__init__ import Comment
 
 
 # TODO 如果没有那个回复策略的配置，则不需要同步那个策略

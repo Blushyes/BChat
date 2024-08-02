@@ -6,7 +6,7 @@ import traceback
 from concurrent.futures import ThreadPoolExecutor
 
 from consts.names import PLUGIN_DIR_NAME, PLUGIN_CONFIG_FILE_NAME
-from context.main import log
+from context.__init__ import log
 from exceptions.context import NotImplementException
 
 

@@ -1,7 +1,7 @@
 import httpx
 
 import persistent.base as persistent
-from context.main import context, log
+from context.__init__ import context, log
 
 
 async def get_all_videos(uid=1472871866, persistent_response=False):

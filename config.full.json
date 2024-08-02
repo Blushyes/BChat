@@ -1,4 +1,5 @@
 {
+  "profile": [prod | dev],
   "global": {
     "reply_myself_switch":  [ ON | OFF ],
     "analyse_at_me_switch":  [ ON | OFF ],

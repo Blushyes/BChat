@@ -2,8 +2,8 @@ import httpx
 from bilibili_api import comment, Credential
 
 import core.login as login
-from context.main import log
-from core.comment.comment import Comment, AtItem
+from context.__init__ import log
+from core.comment.__init__ import Comment, AtItem
 
 GET_AT_URL = 'https://api.bilibili.com/x/msgfeed/at?build=0&mobi_app=web'
 

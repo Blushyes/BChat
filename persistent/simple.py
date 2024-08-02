@@ -1,7 +1,7 @@
 import os
 
-from context.main import log
-from core.comment.comment import Comment
+from context.__init__ import log
+from core.comment.__init__ import Comment
 
 SIMPLE_MARKED_FILENAME = 'markedfile'
 SIMPLE_MARKED_SPLIT = '-'

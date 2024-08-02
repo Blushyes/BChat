@@ -3,7 +3,7 @@ import unittest
 
 os.chdir('..')
 
-from core.comment.comments import Comment
+from core.comment.utils import Comment
 
 
 class MyTestCase(unittest.TestCase):

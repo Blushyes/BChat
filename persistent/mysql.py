@@ -2,8 +2,8 @@
 import pymysql.cursors
 
 from context.config import DefaultConfig
-from context.main import context
-from core.comment.comment import Comment
+from context.__init__ import context
+from core.comment.__init__ import Comment
 
 
 def get_mysql_config(item: str):

@@ -3,4 +3,5 @@ pymysql
 pika
 whisper
 cryptography
+spark_ai_python==0.4.1
 bilibili-api-python==16.2.0
